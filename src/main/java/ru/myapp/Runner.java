@@ -5,16 +5,16 @@ import java.util.Scanner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /** 
- * @author Khoroshko Ekaterina ZKI21-16B 02.05.2024 
+ * @author Khoroshko Ekaterina ZKI21-16B 08.05.2024 
  * <h3>Вариант 12 - Ювелирное изделие</h3>
  * 
- * <h2>Spring, работа с БД </h2>
+ * <h2> </h2>
  *
  * <p>Цель работы: ознакомиться с механизмами работы с базами данных в Spring Framework.</p>
  * 
  * <h4>Общая постановка задачи. </h4>
  *
- * <p> В каждом варианте есть сущность базы данных. Необходимо: </p>
+ * <p>  </p>
  *	<ol>
  * <li>  Описать класс сущности, который имеет как минимум три текстовых поля и два числовых (и, естественно, id). Она описывает некий товар (эта сущность и база будет использована в некоторых последующих работах).</li>
  * <li>  Создать в СУБД PostgreSQL таблицу базы данных, соответствующую спроектированной сущности.
@@ -47,7 +47,7 @@ public class Runner {
 		/** для конфигурации Spring приложения используется конфигурационный класс SpringConfig</br>
 		 * конфигурация осуществляется при помощи аннотаций. */
 		AnnotationConfigApplicationContext context = new
-				AnnotationConfigApplicationContext(SpringConfig.class);
+				AnnotationConfigApplicationContext(config/WebConfig.class);
 		
 		JewelDao jewelDao = context.getBean("jewelDao", JewelDao.class);
 		
