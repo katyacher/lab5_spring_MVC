@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<form th:method="PATCH" th:action="@{/jewelry/{id}(id=${jewel.getId()})}" th:object="${jewel}">
+<!--form th:method="PATCH" th:action="@{/jewelry/{id}(id=${jewel.getId()})}" th:object="${jewel}"-->
+<form th:method="POST" th:action="@{/jewelry/{id}(id=${jewel.getId()})}" th:object="${jewel}">
     <label for="id">Enter id: </label>
     <input type="text" th:field="*{id}" id="id"/>
     <div style="color:red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">id Error</div>

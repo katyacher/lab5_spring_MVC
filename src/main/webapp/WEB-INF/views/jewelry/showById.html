@@ -11,8 +11,12 @@
 <br/>
 <hr/>
 
-<a href="/jewelry/new">Create new jewel</a>
+<a th:href="@{/jewelry/{id}/edit(id=${jewel.getId()})}">Edit</a>
 
+<!--  form th:method="DELETE" th:action="@{/jewelry/{id}(id=${jewel.getId()})}"-->
+<form th:method="POST" th:action="@{/jewelry/{id}(id=${jewel.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
 </body>
 
 </html>
