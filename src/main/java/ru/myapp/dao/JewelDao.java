@@ -48,9 +48,12 @@ public class JewelDao {
 		});
 	}
 	/** Выполняет запрос к базе данных с поиском записи по данному id */ 
-	public List<Jewel> findById(int id) {
-		List<Jewel> jewels = jdbcTemplate.query("select * from jewel where id=?", new BeanPropertyRowMapper<>(Jewel.class), id);
-		return jewels;
+	@SuppressWarnings("deprecation")
+	public Jewel findById(int id) {
+		/** запрос к базе данных вернет массив записей с указанным id, затем в лямбда-выражении выполнится поиск одного элемента из списка
+		 * он будет возвращен, либо будет возвращен null, если список окажется пустым*/
+		return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Jewel.class))
+                .stream().findAny().orElse(null);
 	}
 	
 	/** Выполняетс запрос БД для редактирования записи по идентификатору */
