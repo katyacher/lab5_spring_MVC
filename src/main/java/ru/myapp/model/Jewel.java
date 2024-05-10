@@ -1,4 +1,9 @@
 package ru.myapp.model;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 /** Класс  Jewel - основная сущность приложения. Содержит поля для хранения информации о размере, цене,
  * типе ювелироного изделия, материалов для изготовления изделий: метал и вставка из камня, а также идентификатор
  * 
@@ -8,12 +13,24 @@ package ru.myapp.model;
  * */
 
 public class Jewel {
-
+	@NotEmpty(message = "Id should not be empty")
 	private int id; //
-	private int size; 
+	
+	@NotEmpty(message = "Size should not be empty")
+	@Min(value = 0, message = "Size should be greater then 0")
+	private int size;
+	
+	@NotEmpty(message = "Price should not be empty")
+	@Min(value = 0, message = "Price should be greater then 0")
 	private int price;
+	
+	@NotEmpty(message = "Type should not be empty")
 	private String type;// серьги, кольцо и т.п.
+	
+	@Size(min = 0, max = 20, message = "The name of the metal should be between 0 and 20 characters")
 	private String metal;
+	
+	@Size(min = 0, max = 20, message = "The name of the stone should be between 0 and 20 characters")
 	private String stone; // 
 	
 	public Jewel(){}

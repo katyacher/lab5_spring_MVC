@@ -1,10 +1,14 @@
 package ru.myapp.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,19 +49,38 @@ public class JewelryController {
 	}
 	
 	@PostMapping
-	public String create(@ModelAttribute("jewel") Jewel jewel) {
+	public String create(@ModelAttribute("jewel") @Valid Jewel jewel, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "jewelry/new";
+		}
 		jewelDao.insert(jewel);
 		return "redirect:jewelry";// or "succsesPage"
 	}
 	
 	@GetMapping("/{id}/edit")
-	public String update(Model model, @PathVariable("id") int id) {
+	public String edit(Model model, @PathVariable("id") int id) {
 		/** Получим объект для редактирования, чтобы в полях были значения редактируемого объекта */
 		model.addAttribute(jewelDao.findById(id));
 		return "jewelry/edit";
 	}
 	
+	//@PatchMapping("/{id}")
+	@PostMapping("/{id}")
+	public String update(@ModelAttribute("jewel") @Valid Jewel jewel, BindingResult bindingResult,
+			@PathVariable("id") int id ) {
+		if(bindingResult.hasErrors()) {
+			return "jewelry/edit";
+		}
+		jewelDao.update(id, jewel);		
+		return "redirect:jewelry";
+	}
 	
+	//DeleteMapping("/{id}")
+	@PostMapping("/{id}")
+	public String delete(@PathVariable("id") int id ) {
+		jewelDao.delete(id);
+		return "redirect:jewelry";// or "succsesPage"
+	}
 	
 	
 	
