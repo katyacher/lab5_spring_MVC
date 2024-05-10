@@ -1,7 +1,5 @@
 package ru.myapp.controller;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,9 +47,19 @@ public class JewelryController {
 	@PostMapping
 	public String create(@ModelAttribute("jewel") Jewel jewel) {
 		jewelDao.insert(jewel);
-		
 		return "redirect:jewelry";// or "succsesPage"
 	}
+	
+	@GetMapping("/{id}/edit")
+	public String update(Model model, @PathVariable("id") int id) {
+		/** Получим объект для редактирования, чтобы в полях были значения редактируемого объекта */
+		model.addAttribute(jewelDao.findById(id));
+		return "jewelry/edit";
+	}
+	
+	
+	
+	
 	
 	@ModelAttribute
 	public String headerMessage() {
