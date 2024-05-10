@@ -1,5 +1,9 @@
 package ru.myapp.config;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class DispatcherConfig extends AbstractAnnotationConfigDispatcherServletInitializer {

@@ -1,4 +1,4 @@
-package ru.myapp;
+package ru.myapp.dao;
 
 import java.util.List;
 import javax.sql.DataSource;
@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import ru.myapp.model.Jewel;
 
 /**
  * Шаблон DAO (Data Accses Object) для сущности Jewel.
@@ -44,6 +46,12 @@ public class JewelDao {
 				jewel.getPrice(), jewel.getType(), jewel.getMetal(), jewel.getStone()
 		});
 	}
+	/** Выполняет запрос к базе данных с поиском записи по данному id */ 
+	public List<Jewel> findById(int id) {
+		List<Jewel> jewels = jdbcTemplate.query("select * from jewel where id=?", new BeanPropertyRowMapper<>(Jewel.class), id);
+		return jewels;
+	}
+	
 	/** Выполняетс запрос БД для редактирования записи по идентификатору */
 	public void update(int id, Jewel updatedJewel) {
 		jdbcTemplate.update("UPDATE jewel SET size=?, price=?, type=?, metal=?, stone=? WHERE id=?", updatedJewel.getSize(),

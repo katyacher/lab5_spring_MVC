@@ -1,3 +1,46 @@
+package ru.myapp.controller;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import ru.myapp.dao.JewelDao;
+
+@Controller
+@RequestMapping("/jewelry")
+public class JewelryController {
+	
+	private final JewelDao jewelDao;
+	
+	@Autowired
+	public JewelryController(JewelDao jewelDao) {
+		this.jewelDao = jewelDao;
+	}
+
+	@GetMapping
+	public String show(Model model){
+		/**Получим все ювелирные изделия из DAO и передадим на отображеие в представление */
+		model.addAttribute("jewelry", jewelDao.findAll());
+		
+		return "jewelry/show";
+	}
+	
+	@GetMapping("/id")
+	public String showById(@PathVariable("id") int id, Model model) {
+		/**Получим одно ювелирное изделие по его id из DAO и передадим на отображеие в представление */
+		model.addAttribute("jewelry", jewelDao.findById(id));
+		
+		return "jewelry/showById";
+	}
+}
+ 
+
+/**
 package ru.myapp;
 import java.util.List;
 import java.util.Scanner;
@@ -30,12 +73,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  *</ol>
  */
 
-
+/**
 public class Runner {
-	/** Минимальное значение целого числа для работы с меню*/
-	private static final int MIN_INT = 0;
+	 /**Минимальное значение целого числа для работы с меню*/
+/**	private static final int MIN_INT = 0;
 	/** Максимальное значение целого числа для работы с меню*/
-    private static final int MAX_INT = 6;
+/**   private static final int MAX_INT = 6;
     
 	public static Scanner scanner = new Scanner(System.in);
 	
@@ -43,10 +86,10 @@ public class Runner {
 	 * инициализация объекта класа-шаблона доступа к БД,
 	 * запуск в цикле пользовательского меню для выполнения действий с таблицей БД
 	 * */
-	public static void main(String[] args) {
+/**	public static void main(String[] args) {
 		/** для конфигурации Spring приложения используется конфигурационный класс SpringConfig</br>
 		 * конфигурация осуществляется при помощи аннотаций. */
-		AnnotationConfigApplicationContext context = new
+/**	AnnotationConfigApplicationContext context = new
 				AnnotationConfigApplicationContext(config/WebConfig.class);
 		
 		JewelDao jewelDao = context.getBean("jewelDao", JewelDao.class);
@@ -166,3 +209,7 @@ public class Runner {
 
 }
 
+
+
+
+*/
