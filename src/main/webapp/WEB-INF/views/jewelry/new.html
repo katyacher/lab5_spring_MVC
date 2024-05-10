@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <meta charset="UTF-8">
+    <title>New jewel</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/jewelry}" th:object="${jewel}">
+    <label for="id">Enter id: </label>
+    <input type="text" th:field="*{id}" id="id"/>
+    <div style="color:red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">id Error</div>
+    <br/>
+    <label for="size">Enter size: </label>
+    <input type="text" th:field="*{size}" id="size"/>
+    <div style="color:red" th:if="${#fields.hasErrors('size')}" th:errors="*{size}">size Error</div>
+    <br/>
+    <label for="price">Enter price: </label>
+    <input type="text" th:field="*{price}" id="price"/>
+    <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price Error</div>
+    <br/>
+    <label for="type">Enter type: </label>
+    <input type="text" th:field="*{type}" id="type"/>
+    <div style="color:red" th:if="${#fields.hasErrors('type')}" th:errors="*{type}">type Error</div>
+    <br/>
+    <label for="metal">Enter metal: </label>
+    <input type="text" th:field="*{metal}" id="metal"/>
+    <div style="color:red" th:if="${#fields.hasErrors('metal')}" th:errors="*{metal}">metal Error</div>
+    <br/>
+    <label for="stone">Enter stone: </label>
+    <input type="text" th:field="*{stone}" id="stone"/>
+    <div style="color:red" th:if="${#fields.hasErrors('stone')}" th:errors="*{stone}">stone Error</div>
+    <br/>
+    <input type="submit" value="Add"/>
+</form>
+
+
+<br/>
+<hr/>
+
+<a href="/jewelry/show">Show all jewelry</a>
+
+</body>
+
+</html>

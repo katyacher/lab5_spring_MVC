@@ -21,6 +21,7 @@ import ru.myapp.model.Jewel;
 
 @Component
 public class JewelDao {
+	//public static int JEWEL_COUNT; //счетчик для инициализации id - используется как jewel.setId(++JEWEL_COUNT) 
 	/**
 	 * основной шаблон JDBC, класс предоставляет
 	*простой доступ к базе данных через JDBC и простые запросы с

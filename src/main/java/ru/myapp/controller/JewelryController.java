@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ru.myapp.dao.JewelDao;
+import ru.myapp.model.Jewel;
 
 @Controller
 @RequestMapping("/jewelry")
@@ -36,6 +39,23 @@ public class JewelryController {
 		model.addAttribute("jewelry", jewelDao.findById(id));
 		
 		return "jewelry/showById";
+	}
+	
+	@GetMapping("/new")
+	public String newJewel(@ModelAttribute("jewel") Jewel jewel) {
+		return "jewelry/new";
+	}
+	
+	@PostMapping
+	public String create(@ModelAttribute("jewel") Jewel jewel) {
+		jewelDao.insert(jewel);
+		
+		return "redirect:jewelry";// or "succsesPage"
+	}
+	
+	@ModelAttribute
+	public String headerMessage() {
+		return "Welcome to our website!";
 	}
 }
  

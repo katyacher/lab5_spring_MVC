@@ -11,7 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import ru.myapp.JewelDao;
+import ru.myapp.dao.JewelDao;
 
 @Configuration
 @ComponentScan("ru.myapp") 
