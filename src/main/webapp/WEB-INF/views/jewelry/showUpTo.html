@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <meta charset="UTF-8">
+    <title>Jewelry UpTo</title>
+</head>
+<body>
+
+<div th:each="jewel : ${jewelry}">
+    <a th:href="@{/jewelry/{id}(id=${jewel.getId()})}"
+       th:text="${jewel.toString()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/jewelry/show">Show all jewelry</a>
+
+</body>
+
+</html>

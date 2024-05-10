@@ -16,6 +16,12 @@
 
 <a href="/jewelry/new">Create new jewel</a>
 
+<form th:method="POST" th:action="@{/jewelry/{price}(price=${price})}">
+ <label for="price">Enter price: </label>
+    <input type="text" th:field="*{price}" id="price"/>
+    <input type="submit" value="Show jewelry Up To price"/>
+</form>
+
 </body>
 
 </html>

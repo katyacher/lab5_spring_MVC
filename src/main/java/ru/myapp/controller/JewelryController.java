@@ -82,7 +82,13 @@ public class JewelryController {
 		return "redirect:jewelry";// or "succsesPage"
 	}
 	
-	
+	@GetMapping("/{price}")
+	public String showUpTo(Model model, @PathVariable("price") int price){
+		/**Получим все ювелирные изделия из DAO и передадим на отображеие в представление */
+		model.addAttribute("jewelry", jewelDao.searchUpTo(price));
+		
+		return "jewelry/showUpTo";
+	}
 	
 	@ModelAttribute
 	public String headerMessage() {
