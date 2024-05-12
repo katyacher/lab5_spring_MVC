@@ -1,7 +1,6 @@
 package ru.myapp.dao;
 
 import java.util.List;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,13 +26,18 @@ public class JewelDao {
 	*простой доступ к базе данных через JDBC и простые запросы с
 	*индексированными параметрами
 	 */
-	JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
 	
-	/** Устанавливает доступ к базе данных */
+	/** Устанавливает доступ к базе данных 
 	@Autowired
 	public void setDataSource(DataSource dataSource){
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	}*/
+	@Autowired
+    public JewelDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+	
 	/** Осуществляет запрос к БД по выборке всех записей таблицы jewel, сохраняет ответ от БД в список объектов класса- сущности jewel  */
 	public List<Jewel> findAll(){
 		List<Jewel> jewels = jdbcTemplate.query("select * from jewel", new BeanPropertyRowMapper<>(Jewel.class));

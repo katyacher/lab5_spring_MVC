@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <meta charset="UTF-8">
+    <title>Jewelry</title>
+</head>
+<body>
+
+<div th:each="jewel : ${jewelry}">
+    <a th:href="@{/jewelry/{id}(id=${jewel.getId()})}"
+       th:text="${jewel.toString()}">user</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/jewelry/new">Create new jewel</a>
+
+<form th:method="POST" th:action="@{/jewelry/{price}(price=${price})}">
+ <label for="price">Enter price: </label>
+    <input type="text" th:field="*{price}" id="price"/>
+    <input type="submit" value="Show jewelry Up To price"/>
+</form>
+<!-- 
+<p>Please select an option</p>
+<ol>
+  <li><a href="views/jewelry/index.html" th:href="@{jewelry/index}">Show Jewelry List</a></li>
+  <li><a href="views/jewelry/showById.html" th:href="@{/jewelry/showById}">Show Jewel by id</a></li>
+   <li><a href="views/jewelry/new.html" th:href="@{/jewelry/new}">Add a new Jewel </a></li>
+  <li><a href="views/jewelry/edit.html" th:href="@{/jewelry/edit}">Edit jewel</a></li>
+  <li><a href="views/jewelry/showUpTo.html" th:href="@{/jewelry/showUpTo}">Show jewel up to</a></li>
+</ol> -->
+</body>
+
+</html>
