@@ -1,4 +1,5 @@
-ru/myapp/controller/HelloController.class
-ru/myapp/config/AppConfig.class
-ru/myapp/JewelDao.class
-ru/myapp/Jewel.class
+ru/myapp/config/DispatcherConfig.class
+ru/myapp/model/Jewel.class
+ru/myapp/controller/JewelryController.class
+ru/myapp/dao/JewelDao.class
+ru/myapp/config/WebConfig.class
